@@ -23,7 +23,7 @@
 		
 		<form-login login-page="/login" 
 			authentication-failure-url="/login/failure" 
-			default-target-url="/"/>
+			default-target-url="/mytest"/>
 		
 		<access-denied-handler error-page="/denied"/>
 		
