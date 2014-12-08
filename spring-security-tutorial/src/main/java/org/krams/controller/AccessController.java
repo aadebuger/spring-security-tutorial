@@ -11,6 +11,7 @@ public class AccessController {
 
 	@RequestMapping("/login")
 	public String login(Model model, @RequestParam(required=false) String message) {
+		System.out.println("login="+message);
 		model.addAttribute("message", message);
 		return "access/login";
 	}
