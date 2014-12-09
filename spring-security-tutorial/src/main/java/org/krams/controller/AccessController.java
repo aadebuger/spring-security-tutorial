@@ -56,4 +56,9 @@ public class AccessController {
 	
 			return "{\"message\":\"error\"}";
 		}	
+	@RequestMapping(value = "/create", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+	public @ResponseBody() String newDepartment(@RequestBody String body,HttpServletResponse response) {
+	
+			return "{\"message\":\"error\"}";
+		}	
 }
