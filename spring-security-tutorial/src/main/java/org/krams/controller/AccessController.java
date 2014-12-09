@@ -4,7 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 @Controller
 @RequestMapping
 public class AccessController {
@@ -30,6 +31,15 @@ public class AccessController {
 	@RequestMapping(value = "/logout/success")
  	public String logoutSuccess() {
 		String message = "Logout Success!";
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username ;
+		if (principal instanceof UserDetails) {
+  		username = ((UserDetails)principal).getUsername();
+		} else {
+  	username = principal.toString();
+		}
+		System.out.println("username="+username);
+
 		return "redirect:/login?message="+message;
 	}
 }
