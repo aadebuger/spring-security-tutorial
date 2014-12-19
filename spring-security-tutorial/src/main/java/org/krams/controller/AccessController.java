@@ -1,6 +1,7 @@
 package org.krams.controller;
 
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,7 +79,7 @@ public class AccessController {
 	@Autowired
 	private HttpServletRequest context;
 	
-	@Autowired
+	@Resource
 	private CustomUserDetailsService myuserdetailsservice;
 	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
