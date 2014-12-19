@@ -80,12 +80,13 @@ public class AccessController {
 	private HttpServletRequest context;
 	
 	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
+	private CustomUserDetailsService userDetailsService;
 	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody() String autoLogin(@RequestBody String body,HttpServletResponse response) {
 	
 		
+	//	authenticationManager.
 	//	UserDetails user = myuserdetailsservice.loadUserByUsername("user");
 			
 //		authenticateUserAndSetSession(user,context);
