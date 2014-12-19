@@ -98,7 +98,7 @@ public class AccessController {
 		UserDetails user = loadUserByUsername("jane");
 			
 		System.out.println("user="+user);
-//		authenticateUserAndSetSession(user,context);
+		authenticateUserAndSetSession(user,context);
 		
 			return "{\"message\":\"create error\"}";
 		}	
