@@ -87,23 +87,84 @@ public class AccessController {
 	@Autowired
 	private HttpServletRequest context;
 	
-	@Autowired
-	private CustomUserDetailsService userDetailsService;
+//	@Autowired
+//	private CustomUserDetailsService userDetailsService;
 	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody() String autoLogin(@RequestBody String body,HttpServletResponse response) {
 	
 		
 	//	authenticationManager.
-	//	UserDetails user = myuserdetailsservice.loadUserByUsername("user");
+		UserDetails user = loadUserByUsername("user");
 			
+		System.out.println("user="+user);
 //		authenticateUserAndSetSession(user,context);
 		
 			return "{\"message\":\"create error\"}";
 		}	
 
 	
+	@Autowired
+	private UserRepository userRepository;
 
+	/**
+	 * Returns a populated {@link UserDetails} object. 
+	 * The username is first retrieved from the database and then mapped to 
+	 * a {@link UserDetails} object.
+	 */
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		try {
+			org.krams.domain.User domainUser = userRepository.findByUsername(username);
+			
+			boolean enabled = true;
+			boolean accountNonExpired = true;
+			boolean credentialsNonExpired = true;
+			boolean accountNonLocked = true;
+			
+			return new User(
+					domainUser.getUsername(), 
+					domainUser.getPassword().toLowerCase(),
+					enabled,
+					accountNonExpired,
+					credentialsNonExpired,
+					accountNonLocked,
+					getAuthorities(domainUser.getRole().getRole()));
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	/**
+	 * Retrieves a collection of {@link GrantedAuthority} based on a numerical role
+	 * @param role the numerical role
+	 * @return a collection of {@link GrantedAuthority
+	 */
+	public Collection<? extends GrantedAuthority> getAuthorities(Integer role) {
+		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
+		return authList;
+	}
+	
+	/**
+	 * Converts a numerical role to an equivalent list of roles
+	 * @param role the numerical role
+	 * @return list of roles as as a list of {@link String}
+	 */
+	public List<String> getRoles(Integer role) {
+		List<String> roles = new ArrayList<String>();
+		
+		if (role.intValue() == 1) {
+			roles.add("ROLE_USER");
+			roles.add("ROLE_ADMIN");
+			
+		} else if (role.intValue() == 2) {
+			roles.add("ROLE_USER");
+		}
+		
+		return roles;
+	}
+	
 	/**
 	 * Wraps {@link String} roles to {@link SimpleGrantedAuthority} objects
 	 * @param roles {@link String} of roles
