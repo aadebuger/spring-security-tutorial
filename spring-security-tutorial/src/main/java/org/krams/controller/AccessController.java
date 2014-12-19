@@ -95,7 +95,7 @@ public class AccessController {
 	
 		
 	//	authenticationManager.
-		UserDetails user = loadUserByUsername("user");
+		UserDetails user = loadUserByUsername("jane");
 			
 		System.out.println("user="+user);
 //		authenticateUserAndSetSession(user,context);
