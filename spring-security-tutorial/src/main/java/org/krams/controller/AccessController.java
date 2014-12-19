@@ -79,16 +79,16 @@ public class AccessController {
 	@Autowired
 	private HttpServletRequest context;
 	
-	@Resource
-	private CustomUserDetailsService myuserdetailsservice;
+//	@Resource
+//	private CustomUserDetailsService myuserdetailsservice;
 	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody() String autoLogin(@RequestBody String body,HttpServletResponse response) {
 	
 		
-		UserDetails user = myuserdetailsservice.loadUserByUsername("user");
+	//	UserDetails user = myuserdetailsservice.loadUserByUsername("user");
 			
-		authenticateUserAndSetSession(user,context);
+//		authenticateUserAndSetSession(user,context);
 		
 			return "{\"message\":\"create error\"}";
 		}	
