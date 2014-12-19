@@ -38,7 +38,7 @@
 	        		<password-encoder hash="md5"/>
 	        </authentication-provider>
 	</authentication-manager>
-	<authentication-manager alias="authenticationManager">
+	<authentication-manager alias="authenticationManager"/>
 	    
 	    
 </beans:beans>
