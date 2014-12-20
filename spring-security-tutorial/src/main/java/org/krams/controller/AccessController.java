@@ -184,7 +184,7 @@ public class AccessController {
 	private void authenticateUserAndSetSession(UserDetails user, HttpServletRequest request)
 	{
 	     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-	     user.getUsername(), user.getPassword());
+	     user.getUsername(), user.getPassword(),user.getAuthorities());
 
 	     // generate session if one doesn't exist
 	     request.getSession();
