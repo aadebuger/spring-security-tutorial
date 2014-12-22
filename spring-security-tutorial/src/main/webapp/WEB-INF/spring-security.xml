@@ -36,7 +36,7 @@
 	
 	<authentication-manager erase-credentials="false">
 	    <authentication-provider ref="authenticationProvider" >
-	        	<password-encoder hash="md5"/>
+	        
 	        </authentication-provider>
 	    <!-- 
 	        <authentication-provider user-service-ref="customUserDetailsService">
