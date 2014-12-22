@@ -75,7 +75,3 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
  
 }
 
-
-public class LimitLoginAuthenticationProvider {
-
-}
