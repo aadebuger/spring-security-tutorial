@@ -195,7 +195,7 @@ public class AccessController {
 	     SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 	     SecurityContext context = SecurityContextHolder.getContext();
 	
-	     SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+	  //   SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 
 	     request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 
