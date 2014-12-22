@@ -46,12 +46,14 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
  
 	  } catch (BadCredentialsException e) {	
  
+		 System.out.println("BadCredentialsException "+ e);
 		//invalid login, update to user_attempts
 //		userDetailsDao.updateFailAttempts(authentication.getName());
 		throw e;
  
 	  } catch (LockedException e){
  
+		  System.out.println("LockedException "+ e);
 		//this user is locked!
 		String error = "";
 		/*
