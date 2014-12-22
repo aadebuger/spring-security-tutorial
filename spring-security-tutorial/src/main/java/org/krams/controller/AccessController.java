@@ -33,6 +33,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.core.context.SecurityContext;
 
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
 
 import org.springframework.security.core.userdetails.User;
 
@@ -55,6 +57,9 @@ public class AccessController {
 	@RequestMapping(value = "/login/failure")
  	public String loginFailure() {
 		String message = "Login Failure!";
+		
+		String message1 = getErrorMessage(context, "SPRING_SECURITY_LAST_EXCEPTION");
+		System.out.println("login fail1"+ message1);
 		return "redirect:/login?message="+message;
 	}
 	
@@ -83,10 +88,27 @@ public class AccessController {
 			return "{\"message\":\"create error\"}";
 		}	
 
-	/*
+	
+	private String getErrorMessage(HttpServletRequest request, String key) {
+
+		Exception exception = (Exception) request.getSession()
+				.getAttribute(key);
+
+		String error = "";
+		if (exception instanceof BadCredentialsException) {
+			error = "Invalid username and password!";
+		} else if (exception instanceof LockedException) {
+			error = exception.getMessage();
+		} else {
+			error = "Invalid username and password!";
+		}
+
+		return error;
+	}
+	
 	@Autowired
 	private HttpServletRequest context;
-	
+	/*
 prvate CustomUserDetailsService userDetailsService;
 	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
