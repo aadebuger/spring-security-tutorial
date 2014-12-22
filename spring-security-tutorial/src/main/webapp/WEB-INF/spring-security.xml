@@ -55,7 +55,7 @@
 		
 	</beans:bean>
 	
-	  <bean id="encoder"
+	  <beans:bean id="encoder"
         class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 	  
 	
