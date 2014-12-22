@@ -51,8 +51,13 @@
 		<!--  
 		<beans:property name="userDetailsDao" ref="userDetailsDao" />
 		-->
+		<beans:property name="passwordEncoder" ref="encoder" />
+		
 	</beans:bean>
 	
+	  <bean id="encoder"
+        class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+	  
 	
 	<!-- 
 	<authentication-manager alias="authenticationManager"/>
