@@ -34,7 +34,7 @@
 		 <remember-me />
 	</http>
 	
-	<authentication-manager>
+	<authentication-manager erase-credentials="false">
 	        <authentication-provider user-service-ref="customUserDetailsService">
 	        		<password-encoder hash="md5"/>
 	        </authentication-provider>
