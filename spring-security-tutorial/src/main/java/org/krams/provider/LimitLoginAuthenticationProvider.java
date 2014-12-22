@@ -50,7 +50,7 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
 		 System.out.println("BadCredentialsException "+ e+ authentication.getName());
 		 System.out.println("BadCredentialsException count  "+ count);
 			 
-		 
+		 count=count+1;
 		//invalid login, update to user_attempts
 //		userDetailsDao.updateFailAttempts(authentication.getName());
 		 if (count >=3)
