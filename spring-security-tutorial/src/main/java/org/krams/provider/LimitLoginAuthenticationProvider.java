@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 @Component("authenticationProvider")
 public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider {
 
+	int count=0;
 	/*
 	@Autowired
 	UserDetailsDao userDetailsDao;
@@ -41,14 +42,19 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
 		//if reach here, means login success, else an exception will be thrown
 		//reset the user_attempts
 	//	userDetailsDao.resetFailAttempts(authentication.getName());
- 
+		count = 0 ;
 		return auth;
  
 	  } catch (BadCredentialsException e) {	
  
-		 System.out.println("BadCredentialsException "+ e);
+		 System.out.println("BadCredentialsException "+ e+ authentication.getName());
+		 System.out.println("BadCredentialsException count  "+ count);
+			 
+		 
 		//invalid login, update to user_attempts
 //		userDetailsDao.updateFailAttempts(authentication.getName());
+		 if (count >=3)
+			 throw new LockedException("User Account is locked!");
 		throw e;
  
 	  } catch (LockedException e){
