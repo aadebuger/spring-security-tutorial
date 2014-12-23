@@ -34,7 +34,7 @@
 		 <remember-me />
 	</http>
 	
-	<authentication-manager erase-credentials="false">
+	<authentication-manager erase-credentials="false" alias="authenticationManager">
 	    <authentication-provider ref="authenticationProvider" >
 	        
 	        </authentication-provider>
