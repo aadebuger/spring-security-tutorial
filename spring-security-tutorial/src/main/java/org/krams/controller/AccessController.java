@@ -136,8 +136,22 @@ public class AccessController {
 	         Authentication authenticatedUser = authenticationManager.authenticate(token);
 	 
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
-	        return "{\"message\":\"create error\"}";
+	        return "{\"message\":\"auto login ok\"}";
 	     }
+	@RequestMapping(value = "/faillogin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+	public @ResponseBody() String faillogin(String account, HttpServletRequest request) {
+	          UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+	                 "john", "adminfail");
+	 
+	         request.getSession();
+	 
+	         token.setDetails(new WebAuthenticationDetails(request));
+	         Authentication authenticatedUser = authenticationManager.authenticate(token);
+	 
+	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
+	        return "{\"message\":\"auto fail error\"}";
+	     }
+	 
 	 
 	/*
 prvate CustomUserDetailsService userDetailsService;
