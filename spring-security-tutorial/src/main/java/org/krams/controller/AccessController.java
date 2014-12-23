@@ -128,7 +128,7 @@ public class AccessController {
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody() String autoLogin(String account, HttpServletRequest request) {
 	          UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-	                 "john", "21232f297a57a5a743894a0e4a801fc3");
+	                 "john", "admin");
 	 
 	         request.getSession();
 	 
