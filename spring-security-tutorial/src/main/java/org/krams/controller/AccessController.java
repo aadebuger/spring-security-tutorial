@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.krams.repository.UserRepository;
 import org.krams.service.CustomUserDetailsService;
@@ -29,13 +30,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.security.core.context.SecurityContext;
-
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
-
 import org.springframework.security.core.userdetails.User;
 
 @Controller
@@ -105,9 +106,39 @@ public class AccessController {
 
 		return error;
 	}
+	protected String getRedirectUrl(HttpServletRequest request) {
+	    HttpSession session = request.getSession(false);
+	    if(session != null) {
+	        SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+	        if(savedRequest != null) {
+	            return savedRequest.getRedirectUrl();
+	        }
+	    }
+
+	    /* return a sane default in case data isn't there */
+	    return request.getContextPath() + "/";
+	}
 	
 	@Autowired
 	private HttpServletRequest context;
+	
+	@Autowired
+	     @Qualifier("authenticationManager")
+	      protected AuthenticationManager authenticationManager;
+	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+	public @ResponseBody() String autoLogin(String account, HttpServletRequest request) {
+	          UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+	                 "john", "21232f297a57a5a743894a0e4a801fc3");
+	 
+	         request.getSession();
+	 
+	         token.setDetails(new WebAuthenticationDetails(request));
+	         Authentication authenticatedUser = authenticationManager.authenticate(token);
+	 
+	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
+	        return "{\"message\":\"create error\"}";
+	     }
+	 
 	/*
 prvate CustomUserDetailsService userDetailsService;
 	
