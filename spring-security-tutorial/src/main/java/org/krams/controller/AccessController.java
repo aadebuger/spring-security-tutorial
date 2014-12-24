@@ -39,6 +39,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.User;
 
+import org.aadebuger.MyTokenBasedRememberMeServices;
+
 @Controller
 @RequestMapping
 public class AccessController {
@@ -125,8 +127,14 @@ public class AccessController {
 	@Autowired
 	     @Qualifier("authenticationManager")
 	      protected AuthenticationManager authenticationManager;
+//	@Autowired
+//	private HttpServletRequest context;
+	@Autowired
+	private MyTokenBasedRememberMeServices myservies;
+
+	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-	public @ResponseBody() String autoLogin(String account, HttpServletRequest request) {
+	public @ResponseBody() String autoLogin(HttpServletResponse response, HttpServletRequest request) {
 	          UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 	                 "john", "admin");
 	 
@@ -135,7 +143,12 @@ public class AccessController {
 	         token.setDetails(new WebAuthenticationDetails(request));
 	         Authentication authenticatedUser = authenticationManager.authenticate(token);
 	 
+	         
+	         System.out.println("myservies= "+   myservies);
+	         
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
+	        
+	        
 	        return "{\"message\":\"auto login ok\"}";
 	     }
 	@RequestMapping(value = "/faillogin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
@@ -149,6 +162,10 @@ public class AccessController {
 	         Authentication authenticatedUser = authenticationManager.authenticate(token);
 	 
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
+	        
+	  //      Authentication rememberMeAuth = rememberMeServices.autoLogin(request, response);
+
+	        
 	        return "{\"message\":\"auto fail error\"}";
 	     }
 	 
