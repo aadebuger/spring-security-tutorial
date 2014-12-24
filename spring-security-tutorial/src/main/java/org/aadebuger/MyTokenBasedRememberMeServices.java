@@ -70,6 +70,10 @@ import java.util.Date;
  */
 public class MyTokenBasedRememberMeServices extends AbstractRememberMeServices {
 
+    public MyTokenBasedRememberMeServices() {
+       
+    }
+
     public MyTokenBasedRememberMeServices(String key, UserDetailsService userDetailsService) {
         super(key, userDetailsService);
     }
