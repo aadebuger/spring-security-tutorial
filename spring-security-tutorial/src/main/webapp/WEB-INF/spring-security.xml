@@ -31,7 +31,7 @@
 		<logout invalidate-session="true" 
 			logout-success-url="/logout/success" 
 			logout-url="/logout"/>
-		 <remember-me  />
+		 <remember-me  services-ref="rememberMeServices" key="testKeyForBlog" />
 	</http>
 	
 	<authentication-manager erase-credentials="false" alias="authenticationManager">
@@ -58,6 +58,20 @@
 	  <beans:bean id="encoder"
         class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 	  
+	    <bean id="rememberMeServices"
+          class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <property name="tokenRepository" ref="customTokenRepository" />
+        <property name="userDetailsService" ref="userDetailsService" />
+        <property name="key" value="testKeyForBlog" />
+    </bean>
+	  
+	      <beans:bean id="rememberMeServices"
+          class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+  
+        <property name="userDetailsService" ref="userDetailsService" />
+        <property name="key" value="testKeyForBlog" />
+    </beans:bean>
+	    
 	
 	<!-- 
 	<authentication-manager alias="authenticationManager"/>
