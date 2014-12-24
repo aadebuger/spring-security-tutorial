@@ -149,6 +149,8 @@ public class MyTokenBasedRememberMeServices extends AbstractRememberMeServices {
     public void onLoginSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication successfulAuthentication) {
 
+    	System.out.println("onLoginSuccess");
+    	
         String username = retrieveUserName(successfulAuthentication);
         String password = retrievePassword(successfulAuthentication);
 
