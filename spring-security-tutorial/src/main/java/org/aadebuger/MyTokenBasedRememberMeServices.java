@@ -254,5 +254,48 @@ public class MyTokenBasedRememberMeServices extends AbstractRememberMeServices {
         }
         return Utf8.encode(s);
     }
+    public   void myonLoginSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication successfulAuthentication) {
+
+    	System.out.println("onLoginSuccess");
+    	
+        String username = retrieveUserName(successfulAuthentication);
+        String password = retrievePassword(successfulAuthentication);
+
+        // If unable to find a username and password, just abort as TokenBasedRememberMeServices is
+        // unable to construct a valid token in this case.
+        if (!StringUtils.hasLength(username)) {
+            logger.debug("Unable to retrieve username");
+            return;
+        }
+
+        if (!StringUtils.hasLength(password)) {
+            UserDetails user = getUserDetailsService().loadUserByUsername(username);
+            password = user.getPassword();
+
+            if (!StringUtils.hasLength(password)) {
+                logger.debug("Unable to obtain password for user: " + username);
+                return;
+            }
+        }
+
+        int tokenLifetime = calculateLoginLifetime(request, successfulAuthentication);
+        long expiryTime = System.currentTimeMillis();
+        // SEC-949
+        expiryTime += 1000L* (tokenLifetime < 0 ? TWO_WEEKS_S : tokenLifetime);
+
+        String signatureValue = makeTokenSignature(expiryTime, username, password);
+
+        System.out.println("signatureValue ="+signatureValue );
+        
+        setCookie(new String[] {username, Long.toString(expiryTime), signatureValue}, tokenLifetime, request, response);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Added remember-me cookie for user '" + username + "', expiry: '"
+                    + new Date(expiryTime) + "'");
+        }
+    }
+
+    
 }
 
