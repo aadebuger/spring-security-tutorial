@@ -61,7 +61,7 @@
 	
 	  
 	      <beans:bean id="rememberMeServices"
-          class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+          class="org.aadebuger.MyTokenBasedRememberMeServices">
   
         <beans:property name="userDetailsService" ref="customUserDetailsService" />
         <beans:property name="key" value="testKeyForBlog" />
