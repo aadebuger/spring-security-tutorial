@@ -58,18 +58,13 @@
 	  <beans:bean id="encoder"
         class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 	  
-	    <bean id="rememberMeServices"
-          class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
-        <property name="tokenRepository" ref="customTokenRepository" />
-        <property name="userDetailsService" ref="userDetailsService" />
-        <property name="key" value="testKeyForBlog" />
-    </bean>
+	
 	  
 	      <beans:bean id="rememberMeServices"
           class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
   
-        <property name="userDetailsService" ref="userDetailsService" />
-        <property name="key" value="testKeyForBlog" />
+        <beans:property name="userDetailsService" ref="customUserDetailsService" />
+        <beans:property name="key" value="testKeyForBlog" />
     </beans:bean>
 	    
 	
