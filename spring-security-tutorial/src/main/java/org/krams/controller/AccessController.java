@@ -133,6 +133,14 @@ public class AccessController {
 	private MyTokenBasedRememberMeServices myservies;
 
 	
+	@RequestMapping(value = "/simplelogin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+	public @ResponseBody() String simplelogin(HttpServletResponse response, HttpServletRequest request) {
+	         
+	        
+	        return "{\"message\":\"simgle login ok\"}";
+	     }
+	
+	
 	@RequestMapping(value = "/autologin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody() String autoLogin(HttpServletResponse response, HttpServletRequest request) {
 	          UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
