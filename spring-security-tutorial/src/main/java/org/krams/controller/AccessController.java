@@ -145,8 +145,11 @@ public class AccessController {
 	 
 	         
 	         System.out.println("myservies= "+   myservies);
+	        
+	         myservies.myonLoginSuccess(request, response, authenticatedUser);
 	         
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
+	        
 	        
 	        
 	        return "{\"message\":\"auto login ok\"}";
