@@ -171,13 +171,19 @@ public class AccessController {
 	 
 	         request.getSession();
 	 
+	         try 
+	         {
 	         token.setDetails(new WebAuthenticationDetails(request));
 	         Authentication authenticatedUser = authenticationManager.authenticate(token);
 	 
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
 	        
 	  //      Authentication rememberMeAuth = rememberMeServices.autoLogin(request, response);
-
+	         }
+	         catch( Exception e)
+	         {
+	        	System.out.println("e="+e); 
+	         }
 	        
 	        return "{\"message\":\"auto fail error\"}";
 	     }
