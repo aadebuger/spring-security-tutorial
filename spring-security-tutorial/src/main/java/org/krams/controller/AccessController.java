@@ -48,6 +48,8 @@ public class AccessController {
 	@RequestMapping("/login")
 	public String login(Model model, @RequestParam(required=false) String message) {
 		System.out.println("login1="+message);
+		String message1 = getErrorMessage(context, "SPRING_SECURITY_LAST_EXCEPTION");
+		System.out.println("login fail1"+ message1);
 		model.addAttribute("message", message);
 		return "access/login";
 	}
