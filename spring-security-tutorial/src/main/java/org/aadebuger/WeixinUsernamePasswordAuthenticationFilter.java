@@ -51,7 +51,9 @@ public class WeixinUsernamePasswordAuthenticationFilter extends UsernamePassword
     //~ Methods ========================================================================================================
 
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if (postOnly && !request.getMethod().equals("POST")) {
+      
+    	System.out.println("attemptAuthentication");
+    	if (postOnly && !request.getMethod().equals("POST")) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }
 
