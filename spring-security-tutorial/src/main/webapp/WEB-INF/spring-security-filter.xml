@@ -14,9 +14,9 @@
 	<http pattern="/resources" security="none" />
 	
 	<http  use-expressions="true">
-	    <!--  
+	     
 		  <custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
-		-->
+		
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/logout" access="permitAll"/>
 		<intercept-url pattern="/denied" access="hasRole('ROLE_USER')"/>
@@ -25,6 +25,8 @@
 		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/create" method="POST"  access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/create" method="GET"  access="hasRole('ROLE_ADMIN')"/>			
+		
+		<!-- 
 		<form-login login-page="/login" 
 			authentication-failure-url="/login/failure" 
 			default-target-url="/"/>
@@ -34,8 +36,12 @@
 		<logout invalidate-session="true" 
 			logout-success-url="/logout/success" 
 			logout-url="/logout"/>
+		
+		
+		
 		 <remember-me  services-ref="rememberMeServices" key="testKeyForBlog" />
-		  
+		
+		-->  
 	</http>
 	
 	<authentication-manager erase-credentials="false" alias="authenticationManager">
