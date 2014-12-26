@@ -13,7 +13,7 @@
 
 	<http pattern="/resources" security="none" />
 	
-	<http  use-expressions="true">
+	<http  use-expressions="true" entry-point-ref="loginEntryPoint">
 	     
 		  <custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
 		
@@ -43,6 +43,14 @@
 		
 		-->  
 	</http>
+	
+		<beans:bean id="loginEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<!-- 默认登录页的url -->
+		<beans:constructor-arg value="/login" />
+	</beans:bean>
+	
+		
 	
 	<authentication-manager erase-credentials="false" alias="authenticationManager">
 	    <authentication-provider ref="authenticationProvider" >
