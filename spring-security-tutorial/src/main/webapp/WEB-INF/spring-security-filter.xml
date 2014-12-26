@@ -30,7 +30,8 @@
 		<form-login login-page="/login" 
 			authentication-failure-url="/login/failure" 
 			default-target-url="/"/>
-		
+	
+		--> 	
 		<access-denied-handler error-page="/denied"/>
 		
 		<logout invalidate-session="true" 
@@ -41,7 +42,7 @@
 		
 		 <remember-me  services-ref="rememberMeServices" key="testKeyForBlog" />
 		
-		-->  
+	 
 	</http>
 	
 		<beans:bean id="loginEntryPoint"
