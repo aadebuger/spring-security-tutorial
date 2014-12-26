@@ -84,6 +84,7 @@ public class MyTokenBasedRememberMeServices extends AbstractRememberMeServices {
     protected UserDetails processAutoLoginCookie(String[] cookieTokens, HttpServletRequest request,
             HttpServletResponse response) {
 
+    	System.out.println("processAutoLoginCookie");
         if (cookieTokens.length != 3) {
             throw new InvalidCookieException("Cookie token did not contain 3" +
                     " tokens, but contained '" + Arrays.asList(cookieTokens) + "'");
