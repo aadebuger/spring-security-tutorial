@@ -161,7 +161,9 @@ public class AccessController {
 	        SecurityContextHolder.getContext(). setAuthentication(authenticatedUser);
 	        
 	        
+	        String newurl = getRedirectUrl(request);
 	        
+	        System.out.println("newurl="+newurl);
 	        return "{\"message\":\"auto login ok\"}";
 	     }
 	@RequestMapping(value = "/faillogin", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
