@@ -95,7 +95,7 @@
         <beans:property name="filterProcessesUrl" value="/processLogin" />
         -->
         
-        <beans:property name="postOnly" value="true" />
+        <beans:property name="postOnly" value="false" />
     </beans:bean>
     
 	      
