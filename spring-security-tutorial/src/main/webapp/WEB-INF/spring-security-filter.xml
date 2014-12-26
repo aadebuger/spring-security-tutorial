@@ -72,7 +72,7 @@
     </beans:bean>
 	   
 	      
-	      <beans:bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+	      <beans:bean id="usernamePasswordAuthenticationFilter" class="com.aadebuger.WeixinUsernamePasswordAuthenticationFilter">
      
 	          <beans:property name="authenticationManager" ref="authenticationManager" />
        <!-- 
