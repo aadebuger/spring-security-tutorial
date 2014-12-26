@@ -14,6 +14,8 @@
 	<http pattern="/resources" security="none" />
 	
 	<http  use-expressions="true">
+		  <custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
+		
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/logout" access="permitAll"/>
 		<intercept-url pattern="/denied" access="hasRole('ROLE_USER')"/>
@@ -32,7 +34,6 @@
 			logout-success-url="/logout/success" 
 			logout-url="/logout"/>
 		 <remember-me  services-ref="rememberMeServices" key="testKeyForBlog" />
-		  <custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
 		  
 	</http>
 	
