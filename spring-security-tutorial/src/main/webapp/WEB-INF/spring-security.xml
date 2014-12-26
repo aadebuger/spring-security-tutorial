@@ -66,7 +66,17 @@
         <beans:property name="userDetailsService" ref="customUserDetailsService" />
         <beans:property name="key" value="testKeyForBlog" />
     </beans:bean>
-	    
+	   
+	   <!--    
+	      <beans:bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+        <beans:property name="authenticationManager" ref="authenticationManager" />
+        <beans:property name="authenticationFailureHandler" ref="failureHandler" />
+        <beans:property name="authenticationSuccessHandler" ref="successHandler" />
+        <beans:property name="filterProcessesUrl" value="/processLogin" />
+        <beans:property name="postOnly" value="false" />
+    </beans:bean>
+    -->
+	      
 	
 	<!-- 
 	<authentication-manager alias="authenticationManager"/>
