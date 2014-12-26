@@ -95,7 +95,7 @@
         <beans:property name="authenticationSuccessHandler" ref="successHandler" />
         <beans:property name="filterProcessesUrl" value="/processLogin" />
         -->
-        
+         <beans:property name="rememberMeServices" ref="rememberMeServices"/>
         <beans:property name="postOnly" value="false" />
     </beans:bean>
     
