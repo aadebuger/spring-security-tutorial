@@ -72,7 +72,7 @@
     </beans:bean>
 	   
 	      
-	      <beans:bean id="usernamePasswordAuthenticationFilter" class="com.aadebuger.WeixinUsernamePasswordAuthenticationFilter">
+	      <beans:bean id="usernamePasswordAuthenticationFilter" class="org.aadebuger.WeixinUsernamePasswordAuthenticationFilter">
      
 	          <beans:property name="authenticationManager" ref="authenticationManager" />
        <!-- 
