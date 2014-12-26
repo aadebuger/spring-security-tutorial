@@ -73,9 +73,10 @@
 	   
 	      
 	      <beans:bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
-       <!-- 
+     
 	          <beans:property name="authenticationManager" ref="authenticationManager" />
-        <beans:property name="authenticationFailureHandler" ref="failureHandler" />
+       <!-- 
+	          <beans:property name="authenticationFailureHandler" ref="failureHandler" />
         <beans:property name="authenticationSuccessHandler" ref="successHandler" />
         <beans:property name="filterProcessesUrl" value="/processLogin" />
         -->
